@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Regras da aplicação
 
 [ ] Deve ser possível cadastrar um pet
@@ -15,3 +16,6 @@
 [ ] O usuário que quer adotar, entrará em contato com a ORG via WhatsApp
 [ ] Todos os filtros, além da cidade, são opcionais
 [ ] Para uma ORG acessar a aplicação como admin, ela precisa estar logada
+=======
+# FindAFriend-API
+>>>>>>> 1c7654293eafd0f73d0151abb6ef647309e08fad
