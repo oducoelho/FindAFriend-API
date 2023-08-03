@@ -16,7 +16,7 @@ model Organization {
   email         String  @unique
   cep           Decimal
   endereco      String
-  whatsapp      String
+  whatsapp      Decimal
   password_hash String
 
   created_at DateTime @default(now())

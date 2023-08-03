@@ -5,7 +5,7 @@ CREATE TABLE "organizations" (
     "email" TEXT NOT NULL,
     "cep" DECIMAL(65,30) NOT NULL,
     "endereco" TEXT NOT NULL,
-    "whatsapp" TEXT NOT NULL,
+    "whatsapp" DECIMAL(65,30) NOT NULL,
     "password_hash" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
