@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  findAFriend-api-pg:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker1
+      - POSTGRESQL_PASSWORD=docker1
+      - POSTGRESQL_DATABASE=apisolid1
