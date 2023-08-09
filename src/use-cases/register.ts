@@ -29,9 +29,9 @@ export class RegisterUseCase {
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
-    const userWithSameEmail = await this.orgsRepository.findByEmail(email)
+    const orgWithSameEmail = await this.orgsRepository.findByEmail(email)
 
-    if (userWithSameEmail) {
+    if (orgWithSameEmail) {
       throw new OrgAlreadyExistsError()
     }
 
