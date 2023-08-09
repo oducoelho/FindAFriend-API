@@ -20,7 +20,6 @@ describe('Register Use Case', () => {
 
     expect(org.id).toEqual(expect.any(String))
   })
-
   it('should hash org password upon registration', async () => {
     const orgsRepository = new InMemoryOrgsRepository()
     const registerUseCase = new RegisterUseCase(orgsRepository)
@@ -38,7 +37,6 @@ describe('Register Use Case', () => {
 
     expect(isPasswordCorrectlyHashed).toBe(true)
   })
-
   it('should not be able to register with same email twice', async () => {
     const orgsRepository = new InMemoryOrgsRepository()
     const registerUseCase = new RegisterUseCase(orgsRepository)
