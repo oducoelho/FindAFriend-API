@@ -42,7 +42,7 @@ export class RegisterAPetUseCase {
       age,
       port,
       energy,
-      organization_id,
+      organization: organization_id,
     })
 
     return {

@@ -7,8 +7,8 @@ interface RegisterAOrgUseCaseRequest {
   name: string
   email: string
   cep: string
-  endereco: string
-  whatsapp: string
+  address: string
+  phone_number: string
   password: string
 }
 
@@ -22,9 +22,9 @@ export class RegisterAOrgUseCase {
   async execute({
     cep,
     email,
-    endereco,
+    address,
     name,
-    whatsapp,
+    phone_number,
     password,
   }: RegisterAOrgUseCaseRequest): Promise<RegisterAOrgUseCaseResponse> {
     const password_hash = await hash(password, 6)
@@ -36,12 +36,12 @@ export class RegisterAOrgUseCase {
     }
 
     const org = await this.orgsRepository.create({
-      cep,
-      email,
-      endereco,
       name,
-      whatsapp,
+      email,
       password_hash,
+      address,
+      cep,
+      phone_number,
     })
 
     return {

@@ -7,7 +7,7 @@ import { OrgAlreadyExistsError } from './errors/org-already-exixts'
 let orgsRepository: InMemoryOrgsRepository
 let sut: RegisterAOrgUseCase
 
-describe('Register Use Case', () => {
+describe('Register a org Use Case', () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository()
     sut = new RegisterAOrgUseCase(orgsRepository)
@@ -17,8 +17,8 @@ describe('Register Use Case', () => {
       name: 'John Doe',
       email: 'john@doe.com',
       cep: '13705000',
-      endereco: 'john doe address',
-      whatsapp: '5599999999',
+      address: 'john doe address',
+      phone_number: '5599999999',
       password: '123456',
     })
 
@@ -29,8 +29,8 @@ describe('Register Use Case', () => {
       name: 'John Doe',
       email: 'john@doe.com',
       cep: '13705000',
-      endereco: 'john doe address',
-      whatsapp: '5599999999',
+      address: 'john doe address',
+      phone_number: '5599999999',
       password: '123456',
     })
 
@@ -45,8 +45,8 @@ describe('Register Use Case', () => {
       name: 'John Doe',
       email,
       cep: '13705000',
-      endereco: 'john doe address',
-      whatsapp: '5599999999',
+      address: 'john doe address',
+      phone_number: '5599999999',
       password: '123456',
     })
 
@@ -55,8 +55,8 @@ describe('Register Use Case', () => {
         name: 'John Doe',
         email,
         cep: '13705000',
-        endereco: 'john doe address',
-        whatsapp: '5599999999',
+        address: 'john doe address',
+        phone_number: '5599999999',
         password: '123456',
       }),
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError)
