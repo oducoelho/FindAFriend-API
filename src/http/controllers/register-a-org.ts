@@ -12,12 +12,12 @@ export async function registerAOrg(
     name: z.string(),
     email: z.string().email(),
     cep: z.string().min(8),
-    endereco: z.string(),
-    whatsapp: z.string().min(8),
+    address: z.string(),
+    phone_number: z.string().min(8),
     password: z.string().min(6),
   })
 
-  const { cep, email, endereco, name, password, whatsapp } =
+  const { cep, email, address, name, password, phone_number } =
     RegisterAOrgBodySchema.parse(request.body)
 
   try {
@@ -26,10 +26,10 @@ export async function registerAOrg(
     await registerAOrgUseCase.execute({
       cep,
       email,
-      endereco,
+      address,
       name,
       password,
-      whatsapp,
+      phone_number,
     })
   } catch (err) {
     if (err instanceof OrgAlreadyExistsError) {

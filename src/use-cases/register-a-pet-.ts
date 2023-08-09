@@ -9,7 +9,7 @@ interface RegisterAPetUseCaseRequest {
   age: string
   port: string
   energy: string
-  organization_id: string
+  organizationId: string
 }
 
 interface RegisterAPetUseCaseResponse {
@@ -28,9 +28,9 @@ export class RegisterAPetUseCase {
     age,
     port,
     energy,
-    organization_id,
+    organizationId,
   }: RegisterAPetUseCaseRequest): Promise<RegisterAPetUseCaseResponse> {
-    const organization = await this.orgsRepository.findById(organization_id)
+    const organization = await this.orgsRepository.findById(organizationId)
 
     if (!organization) {
       throw new ResourceNotFoundError()
@@ -42,7 +42,7 @@ export class RegisterAPetUseCase {
       age,
       port,
       energy,
-      organization: organization_id,
+      organization_id: organizationId,
     })
 
     return {
