@@ -8,7 +8,7 @@ interface AuthenticateUseCaseRequest {
   password: string
 }
 
-interface RegisterUseCaseResponse {
+interface RegisterAOrgUseCaseResponse {
   org: Organization
 }
 
@@ -18,7 +18,7 @@ export class AuthenticateUseCase {
   async execute({
     email,
     password,
-  }: AuthenticateUseCaseRequest): Promise<RegisterUseCaseResponse> {
+  }: AuthenticateUseCaseRequest): Promise<RegisterAOrgUseCaseResponse> {
     const org = await this.orgsRepository.findByEmail(email)
 
     if (!org) {

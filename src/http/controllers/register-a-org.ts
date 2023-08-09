@@ -1,11 +1,14 @@
 import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exixts'
-import { makeRegisterUseCase } from '@/use-cases/factories/make-register-use-case'
+import { makeRegisterAOrgUseCase } from '@/use-cases/factories/make-register-a-org-use-case'
 
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
-  const registerBodySchema = z.object({
+export async function registerAOrg(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
+  const RegisterAOrgBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),
     cep: z.string().min(8),
@@ -15,12 +18,12 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   })
 
   const { cep, email, endereco, name, password, whatsapp } =
-    registerBodySchema.parse(request.body)
+    RegisterAOrgBodySchema.parse(request.body)
 
   try {
-    const registerUseCase = makeRegisterUseCase()
+    const registerAOrgUseCase = makeRegisterAOrgUseCase()
 
-    await registerUseCase.execute({
+    await registerAOrgUseCase.execute({
       cep,
       email,
       endereco,
