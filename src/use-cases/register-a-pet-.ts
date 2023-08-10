@@ -7,6 +7,7 @@ interface RegisterAPetUseCaseRequest {
   name: string
   description: string
   age: string
+  city: string
   port: string
   energy: string
   organizationId: string
@@ -26,6 +27,7 @@ export class RegisterAPetUseCase {
     name,
     description,
     age,
+    city,
     port,
     energy,
     organizationId,
@@ -40,6 +42,7 @@ export class RegisterAPetUseCase {
       name,
       description,
       age,
+      city,
       port,
       energy,
       organization_id: organizationId,

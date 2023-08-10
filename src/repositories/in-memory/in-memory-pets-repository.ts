@@ -11,6 +11,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       name: data.name,
       description: data.description,
       age: data.age,
+      city: data.city,
       port: data.port,
       energy: data.energy,
       organization_id: data.organization_id,
@@ -18,6 +19,18 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     this.items.push(pet)
+
+    return pet
+  }
+
+  async FindByCity(city: string, page: number) {
+    const pet = this.items
+      .filter((item) => item.city === city)
+      .slice((page - 1) * 20, page * 20)
+
+    if (!pet) {
+      return null
+    }
 
     return pet
   }

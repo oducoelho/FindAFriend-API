@@ -17,8 +17,8 @@ describe('Authenticate Use Case', () => {
       name: 'John Doe',
       email: 'john@doe.com',
       cep: '13705000',
-      endereco: 'john doe address',
-      whatsapp: '5599999999',
+      address: 'john doe address',
+      phone_number: '5599999999',
       password_hash: await hash('123456', 6),
     })
 
@@ -42,8 +42,8 @@ describe('Authenticate Use Case', () => {
       name: 'John Doe',
       email: 'john@doe.com',
       cep: '13705000',
-      endereco: 'john doe address',
-      whatsapp: '5599999999',
+      address: 'john doe address',
+      phone_number: '5599999999',
       password_hash: await hash('123456', 6),
     })
 
