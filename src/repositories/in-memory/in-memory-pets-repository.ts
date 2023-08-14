@@ -23,16 +23,10 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async FindByCity(city: string, page: number) {
-    const pet = this.items
-      .filter((item) => item.city === city)
+  async searchMany(query: string, page: number) {
+    return this.items
+      .filter((item) => item.city.includes(query))
       .slice((page - 1) * 20, page * 20)
-
-    if (!pet) {
-      return null
-    }
-
-    return pet
   }
 
   async FindByName(name: string, page: number) {

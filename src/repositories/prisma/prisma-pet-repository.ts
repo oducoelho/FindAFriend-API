@@ -20,4 +20,32 @@ export class PrismaPetsRepository implements PetsRepository {
 
     return pets
   }
+
+  async searchMany(query: string, page: number) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        name: {
+          contains: query,
+        },
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return pets
+  }
+
+  async FindByName(name: string, page: number) {
+    const pets = await prisma.pet.findMany({
+      where: {
+        name: {
+          contains: name,
+        },
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return pets
+  }
 }
