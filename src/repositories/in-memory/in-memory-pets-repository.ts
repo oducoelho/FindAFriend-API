@@ -34,4 +34,16 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return pet
   }
+
+  async FindByName(name: string, page: number) {
+    const pet = this.items
+      .filter((item) => item.name === name)
+      .slice((page - 1) * 20, page * 20)
+
+    if (!pet) {
+      return null
+    }
+
+    return pet
+  }
 }
