@@ -1,25 +1,25 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
-import { makeFetchPetByCityUseCase } from '@/use-cases/factories/make-fetch-pet-by-city-use-case'
+import { makeFetchAPetForAdoptionUseCase } from '@/use-cases/factories/make-fetch-a-pet-for-adoption-use-case'
 
-export async function fetchPetByCity(
+export async function fetchAPetForAdoption(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const fetchPetByCityBodySchema = z.object({
-    city: z.string(),
+  const fetchAPetForAdoptionBodySchema = z.object({
+    name: z.string(),
     page: z.number(),
   })
 
-  const { city, page } = fetchPetByCityBodySchema.parse(request.body)
+  const { name, page } = fetchAPetForAdoptionBodySchema.parse(request.body)
 
   try {
-    const fetchPetByCityUseCase = makeFetchPetByCityUseCase()
+    const fetchAPetForAdoptionUseCase = makeFetchAPetForAdoptionUseCase()
 
-    await fetchPetByCityUseCase.execute({
+    await fetchAPetForAdoptionUseCase.execute({
+      name,
       page,
-      city,
     })
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {

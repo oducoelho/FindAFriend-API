@@ -2,22 +2,22 @@ import { PetsRepository } from '@/repositories/pets-repository'
 import { Pet } from '@prisma/client'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
-interface FetchPetByCityUseCaseRequest {
+interface SearchPetByCityUseCaseRequest {
   query: string
   page: number
 }
 
-interface FetchPetByCityUseCaseResponse {
+interface SearchPetByCityUseCaseResponse {
   pet: Pet[]
 }
 
-export class FetchPetByCityUseCase {
+export class SearchPetByCityUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute({
     query,
     page,
-  }: FetchPetByCityUseCaseRequest): Promise<FetchPetByCityUseCaseResponse> {
+  }: SearchPetByCityUseCaseRequest): Promise<SearchPetByCityUseCaseResponse> {
     const pet = await this.petsRepository.searchMany(query, page)
 
     if (!pet) {

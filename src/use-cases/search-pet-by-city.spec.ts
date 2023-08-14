@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { FetchPetByCityUseCase } from './search-pet-by-city'
+import { SearchPetByCityUseCase } from './search-pet-by-city'
 
 let petsRepository: InMemoryPetsRepository
-let sut: FetchPetByCityUseCase
+let sut: SearchPetByCityUseCase
 
 describe('Search Pet Use Case', () => {
   beforeEach(() => {
     petsRepository = new InMemoryPetsRepository()
-    sut = new FetchPetByCityUseCase(petsRepository)
+    sut = new SearchPetByCityUseCase(petsRepository)
   })
   it('should be able to search pets by city', async () => {
     await petsRepository.create({
