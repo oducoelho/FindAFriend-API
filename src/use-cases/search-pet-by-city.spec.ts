@@ -21,16 +21,6 @@ describe('Search Pet Use Case', () => {
       organization_id: '23',
     })
 
-    await petsRepository.create({
-      name: 'cão 2',
-      description: 'Cachorro',
-      age: '8',
-      city: 'San Francisco',
-      energy: '4',
-      port: 'medium',
-      organization_id: '23',
-    })
-
     const { pet } = await sut.execute({
       query: 'San Francisco',
       page: 1,

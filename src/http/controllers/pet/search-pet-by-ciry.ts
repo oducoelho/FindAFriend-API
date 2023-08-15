@@ -3,21 +3,21 @@ import { z } from 'zod'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
 import { makeSearchPetByCityUseCase } from '@/use-cases/factories/make-fetch-pet-by-city-use-case'
 
-export async function setchPetByCity(
+export async function searchPetByCity(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const setchPetByCityBodySchema = z.object({
+  const searchPetByCityBodySchema = z.object({
     query: z.string(),
     page: z.number(),
   })
 
-  const { query, page } = setchPetByCityBodySchema.parse(request.body)
+  const { query, page } = searchPetByCityBodySchema.parse(request.body)
 
   try {
-    const setchPetByCityUseCase = makeSearchPetByCityUseCase()
+    const searchPetByCityUseCase = makeSearchPetByCityUseCase()
 
-    await setchPetByCityUseCase.execute({
+    await searchPetByCityUseCase.execute({
       query,
       page,
     })
