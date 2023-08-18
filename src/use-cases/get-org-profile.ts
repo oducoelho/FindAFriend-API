@@ -3,7 +3,7 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import { OrgsRepository } from '@/repositories/orgs-repository'
 
 interface GetOrgProfileUseCaseRequest {
-  orgId: string
+  organization_id: string
 }
 
 interface GetOrgProfileUseCaseResponse {
@@ -14,9 +14,9 @@ export class GetOrgProfileUseCase {
   constructor(private orgsRepository: OrgsRepository) {}
 
   async execute({
-    orgId,
+    organization_id,
   }: GetOrgProfileUseCaseRequest): Promise<GetOrgProfileUseCaseResponse> {
-    const org = await this.orgsRepository.findById(orgId)
+    const org = await this.orgsRepository.findById(organization_id)
 
     if (!org) {
       throw new ResourceNotFoundError()

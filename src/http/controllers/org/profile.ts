@@ -5,8 +5,13 @@ export async function profile(request: FastifyRequest, reply: FastifyReply) {
   const getUserProfile = makeGetOngProfileUseCase()
 
   const { org } = await getUserProfile.execute({
-    orgId: request.user.sub,
+    organization_id: request.user.sub,
   })
 
-  return reply.status(200).send({ ...org, password_hash: undefined })
+  return reply.status(200).send({
+    org: {
+      ...org,
+      password_hash: undefined,
+    },
+  })
 }
