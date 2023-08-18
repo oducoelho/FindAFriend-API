@@ -35,11 +35,11 @@ export class PrismaPetsRepository implements PetsRepository {
     return pets
   }
 
-  async FindByName(name: string, page: number) {
+  async FindByCharacteristics(characteristics: string, page: number) {
     const pets = await prisma.pet.findMany({
       where: {
-        name: {
-          contains: name,
+        characteristics: {
+          contains: characteristics,
         },
       },
       take: 20,

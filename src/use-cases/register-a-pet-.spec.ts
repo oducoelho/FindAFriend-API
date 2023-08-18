@@ -28,6 +28,7 @@ describe('Register a pet Use Case', () => {
       description: 'Cachorro',
       age: '8',
       city: 'San Francisco',
+      characteristics: 'Preto e branco',
       energy: '4',
       organizationId: id,
       port: 'medium',

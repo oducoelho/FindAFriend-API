@@ -15,6 +15,7 @@ describe('Search Pet Use Case', () => {
       name: 'cão',
       description: 'Cachorro',
       age: '8',
+      characteristics: 'Preto e branco',
       city: 'San Francisco',
       energy: '4',
       port: 'medium',

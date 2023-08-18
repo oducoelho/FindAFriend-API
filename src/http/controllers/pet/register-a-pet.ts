@@ -4,11 +4,11 @@ import { makeRegisterAPetUseCase } from '@/use-cases/factories/make-register-a-p
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-export async function registerAOrg(
+export async function registerAPet(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const RegisterAOrgBodySchema = z.object({
+  const RegisterAPetBodySchema = z.object({
     name: z.string(),
     description: z.string(),
     age: z.string(),
@@ -19,12 +19,12 @@ export async function registerAOrg(
   })
 
   const { name, age, city, description, energy, port, organizationId } =
-    RegisterAOrgBodySchema.parse(request.body)
+    RegisterAPetBodySchema.parse(request.body)
 
   try {
-    const registerAOrgUseCase = makeRegisterAPetUseCase()
+    const registerAPetUseCase = makeRegisterAPetUseCase()
 
-    await registerAOrgUseCase.execute({
+    await registerAPetUseCase.execute({
       name,
       age,
       city,

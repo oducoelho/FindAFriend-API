@@ -7,6 +7,7 @@ interface RegisterAPetUseCaseRequest {
   name: string
   description: string
   age: string
+  characteristics: string
   city: string
   port: string
   energy: string
@@ -27,6 +28,7 @@ export class RegisterAPetUseCase {
     name,
     description,
     age,
+    characteristics,
     city,
     port,
     energy,
@@ -41,6 +43,7 @@ export class RegisterAPetUseCase {
     const pet = await this.petsRepository.create({
       name,
       description,
+      characteristics,
       age,
       city,
       port,

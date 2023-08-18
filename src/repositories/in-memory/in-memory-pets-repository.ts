@@ -10,6 +10,7 @@ export class InMemoryPetsRepository implements PetsRepository {
       id: randomUUID(),
       name: data.name,
       description: data.description,
+      characteristics: data.characteristics,
       age: data.age,
       city: data.city,
       port: data.port,
@@ -29,9 +30,9 @@ export class InMemoryPetsRepository implements PetsRepository {
       .slice((page - 1) * 20, page * 20)
   }
 
-  async FindByName(name: string, page: number) {
+  async FindByCharacteristics(characteristics: string, page: number) {
     const pet = this.items
-      .filter((item) => item.name === name)
+      .filter((item) => item.characteristics === characteristics)
       .slice((page - 1) * 20, page * 20)
 
     if (!pet) {

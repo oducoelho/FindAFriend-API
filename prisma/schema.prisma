@@ -27,13 +27,14 @@ model Organization {
 }
 
 model Pet {
-  id          String @id @default(uuid())
-  name        String
-  description String
-  age         String
-  port        String
-  energy      String
-  city        String
+  id              String @id @default(uuid())
+  name            String
+  description     String
+  age             String
+  port            String
+  energy          String
+  city            String
+  characteristics String
 
   created_at DateTime @default(now())
 

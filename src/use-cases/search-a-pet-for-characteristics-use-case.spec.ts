@@ -1,20 +1,21 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
-import { FetchAPetForAdoptionUseCase } from './fetch-a-pet-for-adoption'
+import { SearchAPetForCharacteristicsUseCase } from './search-a-pet-for-characteristics-use-case'
 
 let petsRepository: InMemoryPetsRepository
-let sut: FetchAPetForAdoptionUseCase
+let sut: SearchAPetForCharacteristicsUseCase
 
-describe('Fetch Pet By Name Use Case', () => {
+describe('Search Pet By Characteristics Use Case', () => {
   beforeEach(() => {
     petsRepository = new InMemoryPetsRepository()
-    sut = new FetchAPetForAdoptionUseCase(petsRepository)
+    sut = new SearchAPetForCharacteristicsUseCase(petsRepository)
   })
-  it('should be able to fetch pets by name', async () => {
+  it('should be able to search pets by characteristics', async () => {
     await petsRepository.create({
       name: 'cão',
       description: 'Cachorro',
       age: '8',
+      characteristics: 'Preto e branco',
       city: 'San Francisco',
       energy: '4',
       port: 'medium',
@@ -22,11 +23,11 @@ describe('Fetch Pet By Name Use Case', () => {
     })
 
     const { pet } = await sut.execute({
-      name: 'cão',
+      characteristics: 'Preto e branco',
       page: 1,
     })
 
     expect(pet).toHaveLength(1)
-    expect(pet).toEqual([expect.objectContaining({ name: 'cão' })])
+    expect(pet).toEqual([expect.objectContaining({ city: 'San Francisco' })])
   })
 })
