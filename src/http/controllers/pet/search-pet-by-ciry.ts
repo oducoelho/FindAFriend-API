@@ -1,6 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
 import { makeSearchPetByCityUseCase } from '@/use-cases/factories/make-fetch-pet-by-city-use-case'
 
 export async function searchPetByCity(
@@ -8,25 +7,20 @@ export async function searchPetByCity(
   reply: FastifyReply,
 ) {
   const searchPetByCityBodySchema = z.object({
-    query: z.string(),
-    page: z.number(),
+    city: z.coerce.string(),
+    page: z.coerce.number().min(1).default(1),
   })
 
-  const { query, page } = searchPetByCityBodySchema.parse(request.body)
+  const { city, page } = searchPetByCityBodySchema.parse(request.body)
 
-  try {
-    const searchPetByCityUseCase = makeSearchPetByCityUseCase()
+  const searchPetByCityUseCase = makeSearchPetByCityUseCase()
 
-    await searchPetByCityUseCase.execute({
-      query,
-      page,
-    })
-  } catch (err) {
-    if (err instanceof InvalidCredentialsError) {
-      return reply.status(400).send({ message: err.message })
-    }
-    throw err
-  }
+  const { pet } = await searchPetByCityUseCase.execute({
+    city,
+    page,
+  })
 
-  return reply.status(200).send()
+  return reply.status(200).send({
+    pet,
+  })
 }

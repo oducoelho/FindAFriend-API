@@ -1,24 +1,26 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error'
-import { makeFetchAPetForAdoptionUseCase } from '@/use-cases/factories/make-fetch-a-pet-for-adoption-use-case'
+import { makeSearchAPetForCharacteristicsUseCase } from '@/use-cases/factories/make-fetch-a-pet-for-adoption-use-case'
 
-export async function fetchAPetForAdoption(
+export async function SearchAPetForCharacteristics(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  const fetchAPetForAdoptionBodySchema = z.object({
-    name: z.string(),
-    page: z.number(),
+  const SearchAPetForCharacteristicsBodySchema = z.object({
+    characteristics: z.string(),
+    page: z.coerce.number().min(1).default(1),
   })
 
-  const { name, page } = fetchAPetForAdoptionBodySchema.parse(request.body)
+  const { characteristics, page } =
+    SearchAPetForCharacteristicsBodySchema.parse(request.body)
 
   try {
-    const fetchAPetForAdoptionUseCase = makeFetchAPetForAdoptionUseCase()
+    const SearchAPetForCharacteristicsUseCase =
+      makeSearchAPetForCharacteristicsUseCase()
 
-    await fetchAPetForAdoptionUseCase.execute({
-      name,
+    await SearchAPetForCharacteristicsUseCase.execute({
+      characteristics,
       page,
     })
   } catch (err) {

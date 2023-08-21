@@ -12,14 +12,23 @@ export async function registerAPet(
     name: z.string(),
     description: z.string(),
     age: z.string(),
+    characteristics: z.string(),
     city: z.string(),
     port: z.string(),
     energy: z.string(),
     organizationId: z.string(),
   })
 
-  const { name, age, city, description, energy, port, organizationId } =
-    RegisterAPetBodySchema.parse(request.body)
+  const {
+    name,
+    age,
+    city,
+    characteristics,
+    description,
+    energy,
+    port,
+    organizationId,
+  } = RegisterAPetBodySchema.parse(request.body)
 
   try {
     const registerAPetUseCase = makeRegisterAPetUseCase()
@@ -29,6 +38,7 @@ export async function registerAPet(
       age,
       city,
       description,
+      characteristics,
       energy,
       port,
       organizationId,

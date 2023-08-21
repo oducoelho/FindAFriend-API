@@ -3,7 +3,7 @@ import { Pet } from '@prisma/client'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface SearchPetByCityUseCaseRequest {
-  query: string
+  city: string
   page: number
 }
 
@@ -15,10 +15,10 @@ export class SearchPetByCityUseCase {
   constructor(private petsRepository: PetsRepository) {}
 
   async execute({
-    query,
+    city,
     page,
   }: SearchPetByCityUseCaseRequest): Promise<SearchPetByCityUseCaseResponse> {
-    const pet = await this.petsRepository.searchMany(query, page)
+    const pet = await this.petsRepository.searchMany(city, page)
 
     if (!pet) {
       throw new ResourceNotFoundError()

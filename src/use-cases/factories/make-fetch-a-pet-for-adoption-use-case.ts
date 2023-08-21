@@ -1,11 +1,10 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pet-repository'
 import { SearchAPetForCharacteristicsUseCase } from '../search-a-pet-for-characteristics-use-case'
 
-export function makeFetchAPetForAdoptionUseCase() {
+export function makeSearchAPetForCharacteristicsUseCase() {
   const petsRepository = new PrismaPetsRepository()
-  const fetchAPetForAdoptionUseCase = new SearchAPetForCharacteristicsUseCase(
-    petsRepository,
-  )
+  const searchAPetForCharacteristicsUseCase =
+    new SearchAPetForCharacteristicsUseCase(petsRepository)
 
-  return fetchAPetForAdoptionUseCase
+  return searchAPetForCharacteristicsUseCase
 }

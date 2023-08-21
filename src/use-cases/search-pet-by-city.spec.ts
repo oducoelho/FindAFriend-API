@@ -23,7 +23,7 @@ describe('Search Pet Use Case', () => {
     })
 
     const { pet } = await sut.execute({
-      query: 'San Francisco',
+      city: 'San Francisco',
       page: 1,
     })
 
@@ -46,7 +46,7 @@ describe('Search Pet Use Case', () => {
 
   //   const { pet } = await sut.execute({
   //     page: 2,
-  //     query: 'cão',
+  //     city: 'cão',
   //   })
 
   //   expect(pet).toHaveLength(2)

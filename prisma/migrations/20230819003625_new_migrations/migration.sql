@@ -20,6 +20,8 @@ CREATE TABLE "pets" (
     "age" TEXT NOT NULL,
     "port" TEXT NOT NULL,
     "energy" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "characteristics" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "organization_id" TEXT NOT NULL,
 
