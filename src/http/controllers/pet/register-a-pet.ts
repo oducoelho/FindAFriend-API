@@ -1,6 +1,5 @@
 import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exixts'
 import { makeRegisterAPetUseCase } from '@/use-cases/factories/make-register-a-pet-use-case'
-
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 

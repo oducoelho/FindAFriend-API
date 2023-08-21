@@ -2,27 +2,30 @@ import request from 'supertest'
 import { app } from '@/app'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { createAndAuthenticateOrg } from '@/utils/createAndAuthenticateOrg'
+import { createAndTakePet } from '@/utils/create-and-take-pet'
 
-describe('Profile (e2e)', () => {
+describe('Search by city (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
+
   afterAll(async () => {
     await app.close()
   })
-  it('should be able to get org profile', async () => {
-    const { token } = await createAndAuthenticateOrg(app)
 
-    const profileResponse = await request(app.server)
-      .get('/me')
+  it('Should be able to search a pet by city', async () => {
+    const { token } = await createAndAuthenticateOrg(app)
+    await createAndTakePet(app)
+
+    const response = await request(app.server)
+      .get('/pets/by-city')
+      .query({
+        city: 'São Paulo',
+        page: 1,
+      })
       .set('Authorization', `Bearer ${token}`)
       .send()
 
-    expect(profileResponse.statusCode).toEqual(200)
-    expect(profileResponse.body.org).toEqual(
-      expect.objectContaining({
-        email: 'ORG@example.COM',
-      }),
-    )
+    expect(response.statusCode).toBe(200)
   })
 })

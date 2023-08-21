@@ -1,5 +1,6 @@
 import { Organization, Prisma } from '@prisma/client'
 import { OrgsRepository } from '../orgs-repository'
+import { randomUUID } from 'crypto'
 
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Organization[] = []
@@ -26,7 +27,7 @@ export class InMemoryOrgsRepository implements OrgsRepository {
 
   async create(data: Prisma.OrganizationCreateInput) {
     const org = {
-      id: 'org-1',
+      id: randomUUID(),
       name: data.name,
       email: data.email,
       address: data.address,

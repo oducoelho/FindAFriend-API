@@ -14,7 +14,7 @@ describe('Register a Pet (e2e)', () => {
     const { token, organization_id } = await createAndAuthenticateOrg(app)
 
     const response = await request(app.server)
-      .post('pets')
+      .post(`/pets`)
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'cão',

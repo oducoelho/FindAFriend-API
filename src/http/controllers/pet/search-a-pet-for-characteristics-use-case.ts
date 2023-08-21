@@ -13,7 +13,7 @@ export async function SearchAPetForCharacteristics(
   })
 
   const { characteristics, page } =
-    SearchAPetForCharacteristicsBodySchema.parse(request.body)
+    SearchAPetForCharacteristicsBodySchema.parse(request.query)
 
   try {
     const SearchAPetForCharacteristicsUseCase =
